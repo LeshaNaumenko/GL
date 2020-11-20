@@ -1,18 +1,17 @@
 package com.gl.task123;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class MyArrayListTest {
+public class MyArrayListTest {
 
     private static MyArrayList<Integer> integers;
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() throws Exception{
         integers = new MyArrayList<Integer>();
         integers.add(1);
         integers.add(2);
@@ -22,26 +21,26 @@ class MyArrayListTest {
     }
 
     @Test
-    void get() {
+    public void get() {
         Integer integer = integers.get(2);
-        Assertions.assertEquals(Integer.valueOf(3), integer);
+        assertEquals(Integer.valueOf(3), integer);
     }
 
     @Test
-    void add() {
+    public void add() {
         integers.add(1000);
         assertEquals(integers.get(5), Integer.valueOf(1000));
 
     }
 
     @Test
-    void addWithIndex() {
+    public void addWithIndex() {
         integers.add(1, 5000);
         assertEquals(integers.get(1), Integer.valueOf(5000));
     }
 
     @Test
-    void remove() {
+    public void remove() {
         int initialSize = integers.size();
         integers.remove(0);
         assertEquals(5, initialSize);
@@ -49,15 +48,13 @@ class MyArrayListTest {
     }
 
     @Test
-    void set() {
+    public void set() {
         integers.set(2, 1_000_000);
         assertEquals(Integer.valueOf(1_000_000), integers.get(2));
     }
 
-    @Test
-    void getExceptionWhileRemoving() {
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-                integers.remove(100);
-        });
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void getExceptionWhileRemoving() {
+            integers.remove(100);
     }
 }

@@ -1,6 +1,5 @@
 package com.gl.task123;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MyArrayList<E> {
@@ -21,9 +20,6 @@ public class MyArrayList<E> {
         if (items != null) {
             System.arraycopy(items, 0, newList, 0, currentSize);
         }
-/*        for (int i = 0; i < currentSize; i++) {
-            newList[i] = items[i];
-        }*/
         items = newList;
     }
 
@@ -74,7 +70,6 @@ public class MyArrayList<E> {
         for (int i = index; i < currentSize - 1; i++) {
             items[i] = items[i + 1];
             items[i + 1] = null;
-            //System.out.println(toString());
         }
 
         currentSize--;
